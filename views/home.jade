@@ -1,0 +1,13 @@
+-if(account && account.username)
+  h2(class="page-title") ¿Que está ocurriendo?
+  form(action='/tweet',method="post")
+    textarea(name="tweet",class="form-control")
+    input(type="submit",value="tweet",class="btn btn-primary")
+
+div(class="row")
+  -for(var i=0;i<tweets.length;i++)
+    div(class="col-sm-6 col-xs-12 well")
+      div
+        a(href="/"+tweets[i].username)=tweets[i].username
+      span=tweets[i].text
+      small="hace "+haceCuanto(tweets[i].date)
