@@ -1,8 +1,8 @@
 app.get('/edit/username', function(req, res) {
   loadAccount(req, function(account) {
-    if(account && account.username) {
-      res.local.account = account;
-      res.local.title = "Editar nombre de usuario";
+    if(account && !account.username) {
+      res.locals.account = account;
+      res.locals.title = "Editar nombre de usuario";
       res.render('edit/username');
     }
   });

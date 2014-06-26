@@ -3,21 +3,30 @@ html(lang="es")
   head
     title= title
     link(rel='stylesheet',type="text/css",href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    link(rel='stylesheet',type="text/css",href="/css/auth-buttons.css")
     script(type="text/javascript",src="//code.jquery.com/jquery-2.1.1.min.js")
     script(type="text/javascript",src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
     script(type="text/javascript",src="/js/main.js")
   body
+    nav.navbar.navbar-default
+      div.container-fluid
+        div.navbar-header
+          button.navbar-toggle(data-toggle="collapse" data-target="#collapsable")
+            span.sr-only Navegación
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Nodetter
+        div.collapse.navbar-collapse(id="collapsable")
+          ul.nav.navbar-nav
+            -if(account && account.username)
+              li
+                a(href='/'+account.username).pull-right=account.username
+              li
+                a(href='/logout') Logout
+            -else if(!account)
+              li#facebook_login
+                a.btn-auth.btn-facebook(style="color: #fff",href='/auth/facebook') Conectar con 
+                  b Facebook
     div.container
-      -if(account && account.username)
-        div.row
-          a(href='/'+account.username).pull-right=account.username
-          a(href='/logout') Logout
-      -else if(!account)
-        div#facebook_login
-          div#fb-login.fb_button
-            a.fb_button_medium(href='/auth/facebook')
-              span#fb_login_text.fb_button_text Conectar con Facebook
-    h1.page-title
-      a(href='/') Nodweet
-    div
       != body

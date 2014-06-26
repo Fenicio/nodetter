@@ -3,12 +3,14 @@ app.get('/:username', function(req, res) {
     Account.findOne({username: req.params.username}, function(err, user) {
       var search_regex = new RegExp('@'+req.params.username,'i');
       var tweets_per_page = 25;
-      Tweets.find({ $or: [{username: req.params.username}, {text: search_regex}]}, {},
+      res.locals.username=req.params.username;
+      Tweet.find({ $or: [{username: req.params.username}, {text: search_regex}]}, {},
         {sort: {date: -1}, limit: tweets_per_page}, function(err, tweets) {
-        res.local.user=user;
-        res.local.tweets=tweets;
-        res.local.account=account;
-        res.local.title=req.params.username;
+        res.locals.user=user;
+        res.locals.tweets=tweets;
+        res.locals.account=account;
+        res.locals.title=req.params.username;
+        res.locals.haceCuanto = haceCuanto;
         res.render('user');
       });
     });

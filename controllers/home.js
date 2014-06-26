@@ -5,6 +5,7 @@ app.get('/', function(req, res) {
       res.locals.tweets= tweets;
       res.locals.account= account;
       res.locals.title= 'Nodweets';
+      res.locals.haceCuanto = haceCuanto;
       try {
         res.render('home');
       } catch(err) {}

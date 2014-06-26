@@ -92,7 +92,9 @@ require('./controllers/edit.js');
 require('./controllers/tweet.js');
 require('./controllers/user.js');
 
+var puerto = 3000;
+
 if(!module.parent) {
-	app.listen(80);
-	console.log("Servidor escuchando en el puerto 80");
+	app.listen(3000);
+	console.log("Servidor escuchando en el puerto "+puerto);
 }

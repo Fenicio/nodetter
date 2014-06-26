@@ -1,15 +1,16 @@
-h2.page-title="@"+user.username
+h2.page-title="@"+username
 
--if(account && account.username && account.username==user.username)
+-if(account && user && account.username && account.username==user.username)
   h2 ¿Que está ocurriendo?
   form(action='/tweet',method="post")
     textarea(name="tweet").form-control
     input(type="submit", value="Tweet").btn.btn-primary
 
 div.row
-  -for(var i=0; i<tweets.length; i++)
-    div.well.col-sm-6.col-xs-12
-      div
-        a(href="/"+tweets[i].username) = tweets[i].username
-      span=tweets[i].text
-      smalll="Hace "+haceCuanto(tweets[i].date)
+  di.list-group
+    -for(var i=0;i<tweets.length;i++)
+      div(class="list-group-item")
+        div.list-group-item-heading
+          a(href="/"+tweets[i].username)=tweets[i].username
+        p.list-group-item-text=tweets[i].text
+          small.pull-right hace #{haceCuanto(tweets[i].date)}

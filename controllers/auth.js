@@ -9,15 +9,14 @@ app.get('/logout', function(req, res, params) {
 
 app.get('/auth/facebook', function(req, res) {
   req.authenticate(['facebook'], function(err, ath) {
-    loadAccount(req, function(account) {
-      console.log("referer", req.headers.referer)
-      if(req.headers.referer && req.headers.referer.substring(0,23)=='http://www.facebook.com') {
+    if(ath) {
+      loadAccount(req, function(account) {
         if(account && !account.username) {
           res.redirect('/edit/username');
         } else {
           res.redirect('/');
         }
-      }
-    });
+      });
+    }
   });
 });
