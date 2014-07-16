@@ -4,7 +4,7 @@ app.get('/', function(req, res) {
     Tweet.find({}, {}, {sort: {'date': -1}, limit: tweetsPerPage}, function(err, tweets) {
       res.locals.tweets= tweets;
       res.locals.account= account;
-      res.locals.title= 'Nodweets';
+      res.locals.title= 'Nodetter';
       res.locals.haceCuanto = haceCuanto;
       try {
         res.render('home');
